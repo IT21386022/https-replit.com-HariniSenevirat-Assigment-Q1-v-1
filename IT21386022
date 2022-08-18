@@ -1,0 +1,213 @@
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    
+    Scanner scanner = new Scanner(System.in);
+    
+    String yesNo;
+
+    int deluxDoublefixedCharge = 5000;
+    int standardFamilyfixedCharge = 3000;
+    int standardSinglefixedCharge = 2000;
+
+    int balconyCharge = 500;
+    int parkingCharge = 200;
+    int tvCharge = 200;
+    int kitchenCharge = 1000;
+    int wifiCharge = 100;
+    int gardenCharge = 200;
+    int acCharge = 500;
+
+    System.out.println("*Room Charge Calculator*");
+    System.out.println("1.Delux Double");
+    System.out.println("3.Standard Family");
+    System.out.println("3.Standard Single");
+    System.out.println("4.Quit");
+    System.out.print("Please Enter Number 1-4: ");
+    int number = scanner.nextInt();
+
+    if(number==1){
+      System.out.println();
+      System.out.println("Delux Double room  fixed price: " + deluxDoublefixedCharge + "\n");
+      System.out.println("** Our aditional services **");
+      System.out.println("For Balcony Charge: " + balconyCharge);
+      System.out.println("For Parking Charge: " + parkingCharge);
+      System.out.println("For TV Charge: " + tvCharge);
+      System.out.println("For Kitchen Charge: " + kitchenCharge);
+      System.out.println("For WiFi Charge: " + wifiCharge);
+
+      System.out.print("Do you need more service? Yes/No: ");
+      yesNo = scanner.next();
+
+      if (yesNo.toLowerCase().equals("yes")){
+        System.out.println();
+        
+        System.out.print("Do you need balcony? yes/no: ");
+        String balcony = scanner.next();
+        boolean balconyConfirmed = confirmExtra(balcony);
+
+        System.out.print("Do you need Parking? yes/no: ");
+        String parking = scanner.next();
+        boolean parkingConfirmed = confirmExtra(parking);
+
+        System.out.print("Do you need TV? yes/no: ");
+        String tv = scanner.next();
+        boolean tvConfirmed = confirmExtra(tv);
+    
+        System.out.print("Do you need Kitchen? yes/no: ");
+        String kitchen = scanner.next();
+        boolean kitchenConfirmed = confirmExtra(kitchen);
+
+        System.out.print("Do you need WiFi? yes/no: ");
+        String wifi = scanner.next();
+        boolean wifiConfirmed = confirmExtra(wifi);
+
+        getChargeDeluxDouble(balconyConfirmed, parkingConfirmed, tvConfirmed, kitchenConfirmed, wifiConfirmed);
+      }
+
+      else {
+        System.out.println("*********");
+        System.out.println("Your total Room Charge : "  + deluxDoublefixedCharge);
+      }
+    }
+
+    else if(number==2){
+      System.out.println();
+      System.out.println("Standard Family room fixed price: " + standardFamilyfixedCharge + "\n");
+   
+      kitchenCharge=500;
+   
+      System.out.println("** Our aditional services **");
+      System.out.println("For Parking Charge: " + parkingCharge);
+      System.out.println("For Kitchen Charge: " + kitchenCharge);
+      System.out.println("For Garden Charge: " + gardenCharge);
+
+      System.out.print("Do you need our extra services? Yes/No: ");
+      yesNo = scanner.next();
+
+      if (yesNo.toLowerCase().equals("yes")){
+        System.out.println();
+       
+        System.out.print("Do you need Parking? yes/no: ");
+        String parking = in.next();
+        boolean parkingConfirmed = confirmExtra(parking);
+
+        System.out.print("Do you need Kitchen? yes/no: ");
+        String kitchen = in.next();
+        boolean kitchenConfirmed = confirmExtra(kitchen);
+
+        System.out.print("Do you need Garden? yes/no: ");
+        String garden = in.next();
+        boolean gardenConfirmed = confirmExtra(garden);
+
+        getChargeStandardFamily(parkingConfirmed, kitchenConfirmed, gardenConfirmed);
+      }
+
+      else{
+        System.out.println("*********");
+        System.out.println("Your total Room Charge : "  + standardFamilyfixedCharge);
+      }
+    }
+
+    else if(number==3){
+      System.out.println();
+      System.out.println("Standard Single Fixed Price: " + standardSinglefixedCharge + "\n");
+
+      System.out.println("** Our aditional services **");
+      System.out.println("For Parking Charge: " + parkingCharge);
+      System.out.println("For AC Charge: " + acCharge);
+      System.out.println("For WiFi Charge: " + wifiCharge);
+
+      System.out.print("Do you need our extra services? Yes/No: ");
+      yesNo = scanner.next();
+
+      if (yesNo.toLowerCase().equals("yes")){
+        System.out.print("Do you need Parking? yes/no: ");
+        String parking = scanner.next();
+        boolean parkingConfirmed = confirmExtra(parking);
+   
+        System.out.print("Do you need AC? yes/no: ");
+        String ac = in.next();
+        boolean acConfirmed = confirmExtra(ac);
+
+        System.out.print("Do you need Wifi? yes/no: ");
+        String wifi = in.next();
+        boolean wifiConfirmed = confirmExtra(wifi);
+
+        getChargeStandardSingle(parkingConfirmed, acConfirmed, wifiConfirmed);
+      }
+      else {
+        System.out.println("*********");
+        System.out.println("Your total Room Charge : " + standardSinglefixedCharge);
+      }
+
+    else if(number==4){
+      System.out.println("Sorry to see you leave(-_-)");
+      scanner.close();
+    }
+
+    else{
+      System.out.println("Out of input bound");
+      scanner.close();
+    }
+
+    public static boolean confirmExtra(String answer) {
+      boolean confirm;
+      if (answer.toLowerCase().equals("yes")) {
+        confirm = true;
+      } 
+      else {
+        confirm = false;
+      }
+
+      return confirm;
+    }
+
+    public static int getPrice(boolean action, int price) {
+
+      if (action == true) {
+         return price;
+      } 
+      else {
+         price = 0;
+         return price;
+      }
+    }
+
+    public static void getChargeDeluxDouble(boolean balcony, boolean parking, boolean tv, boolean kitchen,
+   boolean wifi) {
+      int getBalconyPrice = getPrice(balcony, balconyCharge);
+      int getParkingPrice = getPrice(parking, parkingCharge);
+      int getTvPrice = getPrice(tv, tvCharge);
+      int getKitchenPrice = getPrice(kitchen, kitchenCharge);
+      int getWifiPrice = getPrice(wifi, wifiCharge);
+
+      int totalPrice = deluxDoublefixedCharge + getBalconyPrice + getParkingPrice + getTvPrice + getKitchenPrice + getWifiPrice;
+      System.out.println("*********");
+      System.out.println("Your total Room Charge : "  + totalPrice);
+    }
+    public static void getChargeStandardFamily(boolean parking, boolean kitchen, boolean garden){
+      int getParkingPrice = getPrice(parking, parkingCharge);
+      int getKitchenPrice = getPrice(kitchen, kitchenCharge);
+      int getGardenPrice = getPrice(garden, gardenCharge);
+
+  
+  int totalPrice = standardFamilyfixedCharge + getParkingPrice + getKitchenPrice + getGardenPrice;
+  System.out.println("*********");
+  System.out.println("Your total Room Charge : "  + totalPrice);
+ }
+
+ public static void getChargeStandardSingle(boolean parking, boolean ac, boolean wifi) {
+
+  int getParkingPrice = getPrice(parking, parkingCharge);
+  int getAcPrice = getPrice(ac, acCharge);
+  int getWifiPrice = getPrice(wifi, wifiCharge);
+
+  int totalPrice = standardSinglefixedCharge + getParkingPrice + getAcPrice + getWifiPrice;
+  System.out.println("*********");
+  System.out.println("Your total Room Charge : " + totalPrice);
+ }
+
+}
+}
